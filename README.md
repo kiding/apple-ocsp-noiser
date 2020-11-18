@@ -10,13 +10,12 @@ Simply run:
 
 ## Serial Number Submission
 
-You could help the project by adding more legitimate serial numbers. Make an issue or a pull request with them in hex format.
+You could help the project by adding more legitimate serial numbers. Make an issue or a pull request with **only** the serial numbers in hex format.
 
 Please **do not post** the name of apps or developers. Creating a trackable database is not the purpose here.
 
 ```bash
-$ codesign -d --extract-certificates /Applications/RandomApplication.app 
-Executable=/Applications/RandomApplication.app/Contents/MacOS/RandomApplication
-$ openssl x509 -in codesign0 -inform DER -serial | head -n1 | sed 's/serial=\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)/\\x\1\\x\2\\x\3\\x\4\\x\5\\x\6\\x\7\\x\8/'
-\x75\x8E\xF3\x40\x27\x52\xDE\x87
+codesign -d --extract-certificates /Applications/RandomApplication.app 
+openssl x509 -in codesign0 -inform DER -serial | head -n1 | sed 's/serial=\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)/\\x\1\\x\2\\x\3\\x\4\\x\5\\x\6\\x\7\\x\8/'
+# \x75\x8E\xF3\x40\x27\x52\xDE\x87
 ```
