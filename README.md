@@ -1,7 +1,7 @@
 # apple-ocsp-noiser
 Noise Machine for Apple Developer ID OCSP
 
-In order to confuse eavesdroppers in the middle, `ocsp-noiser` sends out an OCSP request to `http://ocsp.apple.com` with a *random* legitimate or nonexistent **serial number** for every *random* period of time. 
+In order to confuse the eavesdroppers in the middle, `apple-ocsp-noiser` sends out an OCSP request to `http://ocsp.apple.com` with a *random* legitimate or nonexistent **serial number** for every *random* period of time. 
 
 Simply run:
 ```bash
