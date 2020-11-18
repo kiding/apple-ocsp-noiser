@@ -10,7 +10,7 @@ Simply run:
 
 ## Serial Number Submission
 
-You could help the project by adding more legitimate serial numbers. Make an issue or a pull request with **only** the serial numbers in hex format.
+A great eavesdropper might have a database of *Developer ID* serial numbers. You can help the project by adding more legitimate serial numbers in the *random* pool. Make an issue or a pull request with **only** the serial numbers in hex format.
 
 Please **do not post** the name of apps or developers. Creating a trackable database is not the purpose here.
 
