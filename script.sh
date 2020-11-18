@@ -4,7 +4,7 @@ set -Eeuo pipefail
 ASN1_PREFIX=$'\x30\x4E\x30\x4C\xA0\x03\x02\x01\x00\x30\x45\x30\x43\x30\x41\x30\x09\x06\x05\x2B\x0E\x03\x02\x1A\x05\x00\x04\x14\x33\x81\xD1\xEF\xDB\x68\xB0\x85\x21\x4D\x2E\xEF\xAF\x8C\x4A\x69\x64\x3C\x2A\x6C\x04\x14\x57\x17\xED\xA2\xCF\xDC\x7C\x98\xA1\x10\xE0\xFC\xBE\x87\x2D\x2C\xF2\xE3\x17\x54\x02\x08'
 URL_HOST='http://ocsp.apple.com'
 URL_RESPONDER='ocsp04-devid01' # or ocsp-devid01
-KNOWN_SERIALS=(
+LEGITIMATE_SERIALS=(
   $'\x19\xC6\x0C\x0C\x77\xEA\x61\xD2'
   $'\x77\x25\xDB\xFF\x31\xBD\xEF\xCD'
   $'\x57\x9C\x99\xC0\x8F\x66\x2A\x7C'
@@ -44,11 +44,11 @@ KNOWN_SERIALS=(
 
 while true; do
   if [ $((RANDOM % 2)) -eq 0 ]; then
-    RANDOM_SERIAL=$(dd if=/dev/random count=8 bs=1 2>/dev/null)
-    ASN1_SERIAL="$RANDOM_SERIAL"
+    NONEXISTENT_SERIAL=$(dd if=/dev/random count=8 bs=1 2>/dev/null)
+    ASN1_SERIAL="$NONEXISTENT_SERIAL"
   else
-    DICE=$((RANDOM % ${#KNOWN_SERIALS} + 1))
-    ASN1_SERIAL="${KNOWN_SERIALS[$DICE]}"
+    DICE=$((RANDOM % ${#LEGITIMATE_SERIALS} + 1))
+    ASN1_SERIAL="${LEGITIMATE_SERIALS[$DICE]}"
   fi
   echo -n "$ASN1_SERIAL" | xxd -p
 
