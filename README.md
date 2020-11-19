@@ -1,7 +1,7 @@
 # apple-ocsp-noiser
 Noise Machine for Apple Developer ID OCSP
 
-> Read [the post](https://kiding.medium.com/macos-ocsp-telemetry-explainer-and-mitigation-9bc243928f4c) for the full details.
+> Read [the writeup](https://kiding.medium.com/macos-ocsp-telemetry-explainer-and-mitigation-9bc243928f4c) for the full details.
 
 macOS sends a periodic OCSP request *in plaintext* with a **serial number** of the developer certificate of the app that's being installed or launched. Whether the intention, the requests themselves can be used as *telemetry* by anyone on the network; ISPs, governments, etc. 
 
