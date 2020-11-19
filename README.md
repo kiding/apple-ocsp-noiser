@@ -5,7 +5,9 @@ Noise Machine for Apple Developer ID OCSP
 
 macOS sends a periodic OCSP request *in plaintext* with a **serial number** of the developer certificate of the app that's being installed or launched. Whether the intention, the requests themselves can be used as *telemetry* by anyone on the network; ISPs, governments, etc. 
 
-In order to confuse the eavesdroppers in the middle, `apple-ocsp-noiser` sends out an OCSP request to `http://ocsp.apple.com` with a *random* legitimate or nonexistent **serial number** for every *random* period of time. 
+Blocking `ocsp.apple.com` entirely will hinder Apple's built-in malware protection. What we should do instead is to *confuse* the eavesdroppers in the middle by adding noise.
+
+`apple-ocsp-noiser` sends out an OCSP request to `http://ocsp.apple.com` with a *random* legitimate or nonexistent **serial number** for every *random* period of time. 
 
 Simply run:
 ```bash
