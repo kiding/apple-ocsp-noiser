@@ -1,5 +1,5 @@
 # apple-ocsp-noiser
-Noise Machine for Apple Developer ID OCSP
+Privacy-Preserving Noise Machine for Apple Developer ID OCSP
 
 > Read [the writeup](https://kiding.medium.com/macos-ocsp-telemetry-explainer-and-mitigation-9bc243928f4c) for the full details.
 
