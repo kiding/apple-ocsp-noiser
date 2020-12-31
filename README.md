@@ -9,9 +9,11 @@ Blocking `ocsp.apple.com` entirely will hinder Apple's built-in malware protecti
 
 `apple-ocsp-noiser` sends out an OCSP request to `http://ocsp.apple.com` with a *random* legitimate or nonexistent **serial number** for every *random* period of time. 
 
-Simply run:
+Download `script.sh`, examine the file, then run it with `zsh`.
 ```bash
-/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/script.sh)"
+curl -O https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/script.sh
+# If you're confident the script is trustworthy:
+/bin/zsh script.sh
 ```
 
 ## Serial Number Submission
