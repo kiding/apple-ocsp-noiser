@@ -23,7 +23,15 @@ A well-equipped eavesdropper might have a database of *Developer ID* serial numb
 Please **do not post** the name of apps or developers. Creating a trackable database is not the purpose here.
 
 ```bash
-codesign -d --extract-certificates /Applications/RandomApplication.app 
-openssl x509 -in codesign0 -inform DER -serial | head -n1 | sed 's/serial=\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)/\\x\1\\x\2\\x\3\\x\4\\x\5\\x\6\\x\7\\x\8/'
+ls | grep '.app' | while read APP; do
+  rm -f OCSP_0 OCSP_1 OCSP_2
+  codesign -d --extract-certificates="OCSP_" "$APP" 2>/dev/null
+
+  if [ -f OCSP_0 ]; then
+    openssl x509 -in OCSP_0 -inform DER -serial | head -n1 | sed 's/serial=\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)/\\x\1\\x\2\\x\3\\x\4\\x\5\\x\6\\x\7\\x\8/' 2>/dev/null
+  fi
+
+  rm -f OCSP_0 OCSP_1 OCSP_2
+done
 # \x75\x8E\xF3\x40\x27\x52\xDE\x87
 ```
