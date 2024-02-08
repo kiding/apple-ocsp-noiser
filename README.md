@@ -14,9 +14,10 @@ Download `script.sh`, examine the file, then run it with `zsh`.
 cd /Users/Shared/ || exit 1
 curl -Ro 'apple-ocsp-noiser.sh' --fail -- \
     'https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/script.sh'
-chmod +x /Users/Shared/apple-ocsp-noiser.sh
+chmod +x apple-ocsp-noiser.sh
+
 # If you're confident the script is trustworthy:
-/bin/zsh /Users/Shared/apple-ocsp-noiser.sh
+/bin/zsh apple-ocsp-noiser.sh
 ```
 
 You can also install the script to run at load:
@@ -26,12 +27,12 @@ cd ~/Library/LaunchAgents/ || exit 1
 curl -ROJ --fail -- \
     'https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/launched.apple-ocsp-noiser.plist'
 
-# examine the plist file in case there was a disruption in downloading
-# you will also need to change the `<username>` to the real user name
+# Examine the plist file in case there was a disruption in downloading
+# You will also need to change the `<username>` to the real user name
 YOUR_FAVORATE_EDITOR=vim
-"$YOUR_FAVORATE_EDITOR" ~/Library/LaunchAgents/launched.apple-ocsp-noiser.plist
+"$YOUR_FAVORATE_EDITOR" launched.apple-ocsp-noiser.plist
 
-launchctl load -w ~/Library/LaunchAgents/launched.apple-ocsp-noiser.plist
+launchctl load -w launched.apple-ocsp-noiser.plist
 ```
 
 ## Serial Number Submission
