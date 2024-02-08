@@ -11,9 +11,12 @@ Blocking `ocsp.apple.com` entirely will hinder Apple's built-in malware protecti
 
 Download `script.sh`, examine the file, then run it with `zsh`.
 ```bash
-curl -O https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/script.sh
+cd /Users/Shared/ || exit 1
+curl -Ro 'apple-ocsp-noiser.sh' --fail -- \
+    'https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/script.sh'
+chmod +x /Users/Shared/apple-ocsp-noiser.sh
 # If you're confident the script is trustworthy:
-/bin/zsh script.sh
+/bin/zsh /Users/Shared/apple-ocsp-noiser.sh
 ```
 
 ## Serial Number Submission
