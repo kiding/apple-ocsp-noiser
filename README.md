@@ -19,6 +19,21 @@ chmod +x /Users/Shared/apple-ocsp-noiser.sh
 /bin/zsh /Users/Shared/apple-ocsp-noiser.sh
 ```
 
+You can also install the script to run at load:
+```bash
+mkdir -p ~/Library/LaunchAgents/
+cd ~/Library/LaunchAgents/ || exit 1
+curl -ROJ --fail -- \
+    'https://raw.githubusercontent.com/kiding/apple-ocsp-noiser/main/launched.apple-ocsp-noiser.plist'
+
+# examine the plist file in case there was a disruption in downloading
+# you will also need to change the `<username>` to the real user name
+YOUR_FAVORATE_EDITOR=vim
+"$YOUR_FAVORATE_EDITOR" ~/Library/LaunchAgents/launched.apple-ocsp-noiser.plist
+
+launchctl load -w ~/Library/LaunchAgents/launched.apple-ocsp-noiser.plist
+```
+
 ## Serial Number Submission
 
 A well-equipped eavesdropper might have a database of *Developer ID* serial numbers. You can help the project by adding more legitimate serial numbers in the *random* pool. Make an issue or a pull request with **only** the serial numbers in hex format.
