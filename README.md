@@ -28,7 +28,10 @@ ls | grep '.app' | while read APP; do
   codesign -d --extract-certificates="OCSP_" "$APP" 2>/dev/null
 
   if [ -f OCSP_0 ]; then
-    openssl x509 -in OCSP_0 -inform DER -serial | head -n1 | sed 's/serial=\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)/\\x\1\\x\2\\x\3\\x\4\\x\5\\x\6\\x\7\\x\8/' 2>/dev/null
+    SERIAL=$(openssl x509 -in OCSP_0 -inform DER -serial | head -n1)
+    if [[ ${#SERIAL} -ge 23 ]]; then
+      echo "$SERIAL" | sed 's/serial=\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\)\(..\).*/\\x\1\\x\2\\x\3\\x\4\\x\5\\x\6\\x\7\\x\8/' 2>/dev/null
+    fi
   fi
 
   rm -f OCSP_0 OCSP_1 OCSP_2
