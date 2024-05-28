@@ -41,7 +41,8 @@ A well-equipped eavesdropper might have a database of *Developer ID* serial numb
 
 Please **do not post** the name of apps or developers. Creating a trackable database is not the purpose here.
 
-```bash
+```zsh
+cd /Applications/ || exit 1
 ls | grep '.app' | while read APP; do
   rm -f OCSP_0 OCSP_1 OCSP_2
   codesign -d --extract-certificates="OCSP_" "$APP" 2>/dev/null
